@@ -119,3 +119,16 @@ https://goteamup.com/p/787790-crossfit-vetroz/e/9947791-wod/register/
 
 ### cURL command
 `curl 'https://goteamup.com/p/787790-crossfit-vetroz/e/9947791-wod/register/' --2.0 -H 'Host: goteamup.com' -H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:57.0) Gecko/20100101 Firefox/57.0' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' -H 'Accept-Language: en-US,en;q=0.5' --compressed -H 'Referer: https://goteamup.com/p/787790-crossfit-vetroz/e/9947791-wod/' -H 'Content-Type: application/x-www-form-urlencoded' -H 'Cookie: sessionid=fewsa3umh7sl8nrv8xj055ekdc8sxett; csrftoken=fWBQhSntDu7NUVKDwr61yBm8abu2EAcU; ajs_user_id=%22581902%22; ajs_group_id=null; ajs_anonymous_id=%22a7745ede-44d1-4817-8e2c-ed7b1a541eb4%22' -H 'DNT: 1' -H 'Connection: keep-alive' -H 'Upgrade-Insecure-Requests: 1' --data 'csrfmiddlewaretoken=fWBQhSntDu7NUVKDwr61yBm8abu2EAcU&status=book&due_now_price=0&consumerprofile=1275730&consumermembership=817662'`
+
+### Minimum request
+
+```curl 'https://goteamup.com/p/787790-crossfit-vetroz/e/9947893-wod/register/' -H 'Referer: https://goteamup.com/p/787790-crossfit-vetroz/e/9947893-wod/' -H 'Content-Type: application/x-www-form-urlencoded' -H 'Cookie: sessionid=fewsa3umh7sl8nrv8xj055ekdc8sxett; csrftoken=fWBQhSntDu7NUVKDwr61yBm8abu2EAcU' --data 'csrfmiddlewaretoken=fWBQhSntDu7NUVKDwr61yBm8abu2EAcU&status=book&due_now_price=0&consumerprofile=1275730&consumermembership=817662'```
+
+
+```curl '<page_address>/register/' -H 'Referer: <page_address>' -H 'Content-Type: application/x-www-form-urlencoded' -H 'Cookie: sessionid=<session_id>; csrftoken=<csrftoken>' --data 'csrfmiddlewaretoken=<csrftoken>&status=book&due_now_price=0&consumerprofile=<profile>&consumermembership=<membership>'```
+
+page_address = https://goteamup.com/p/787790-crossfit-vetroz/e/9947893-wod
+session_id = fewsa3umh7sl8nrv8xj055ekdc8sxett
+csrftoken = fWBQhSntDu7NUVKDwr61yBm8abu2EAcU (Seems that anything with 32 chars works)
+profile = 1275730
+membership = 817662

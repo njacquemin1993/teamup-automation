@@ -127,8 +127,8 @@ https://goteamup.com/p/787790-crossfit-vetroz/e/9947791-wod/register/
 
 ```curl '<page_address>/register/' -H 'Referer: <page_address>' -H 'Content-Type: application/x-www-form-urlencoded' -H 'Cookie: sessionid=<session_id>; csrftoken=<csrftoken>' --data 'csrfmiddlewaretoken=<csrftoken>&status=book&due_now_price=0&consumerprofile=<profile>&consumermembership=<membership>'```
 
-page_address = https://goteamup.com/p/787790-crossfit-vetroz/e/9947893-wod
-session_id = fewsa3umh7sl8nrv8xj055ekdc8sxett
-csrftoken = fWBQhSntDu7NUVKDwr61yBm8abu2EAcU (Seems that anything with 32 chars works)
-profile = 1275730
-membership = 817662
+* page_address = https://goteamup.com/p/787790-crossfit-vetroz/e/9947893-wod
+* session_id = fewsa3umh7sl8nrv8xj055ekdc8sxett
+* csrftoken = fWBQhSntDu7NUVKDwr61yBm8abu2EAcU (Seems that anything with 32 chars works)
+* profile = 1275730
+* membership = 817662

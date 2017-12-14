@@ -3,4 +3,8 @@ from __future__ import unicode_literals
 
 from django.contrib import admin
 
-# Register your models here.
+from main.models import Wod
+
+@admin.register(Wod)
+class WodAdmin(admin.ModelAdmin):
+    list_display = ("uuid", "user", "wod_id", "launch_time", "launched")

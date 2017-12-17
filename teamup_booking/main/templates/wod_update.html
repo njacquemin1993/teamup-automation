@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+
+{% block content %}
+
+<div class="panel panel-primary">
+  <div class="panel-heading">Wod</div>
+  <div class="panel-body">
+
+      <form action="" method="POST">
+          {% bootstrap_form form  %}
+          {% csrf_token %}
+          <input class="btn btn-default" type="submit" value="Save">
+      </form>
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+  $( document ).ready(function() {
+    $("[id*=launch_time]").datetimepicker({"dateFormat" : "dd-mm-yy", "timeFormat" : "HH:mm"});
+  })
+</script>
+{% endblock %}

@@ -7,4 +7,4 @@ from main.models import Wod
 
 @admin.register(Wod)
 class WodAdmin(admin.ModelAdmin):
-    list_display = ("uuid", "user", "wod_id", "launch_time", "launched")
+    list_display = ("uuid", "user", "wod_url", "launch_time", "launched")

@@ -12,8 +12,6 @@ def check_wod():
     now = timezone.now()
     for wod in Wod.objects.filter(launch_time__lte=now, launched=False):
         register_for_wod(wod.uuid)
-        wod.launched = True
-        wod.save()        
 
 class Command(BaseCommand):
     def handle(self, *args, **options):

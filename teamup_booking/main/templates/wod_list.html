@@ -12,18 +12,22 @@
   <div class="panel-heading">Wod list</div>
 
   <div class="panel-body">
-
+      <a href="{% url "wod-create-view" %}" class="btn btn-primary">Create</a>
       <table class="table">
         <thead>
-          <th>Wod ID</th>
+          <th>Wod URL</th>
           <th>Launch time</th>
-          <th>Launched</th>
+          <th>Registered</th>
+          <th></th>
+          <th></th>
         </thead>
         {% for entry in object_list  %}
           <tr>
-            <td> {{ entry.wod_id }}</td>
+            <td> <a href="{{ entry.wod_url }}">{{ entry.wod_url }}</a></td>
             <td>{{ entry.launch_time|localtime|date:"d.m.y - H:i" }}</td>
-            <td>{% if entry.launched %} Yes {% else %} No {% endif %}</td>
+            <td>{% if entry.launched %} <span class="label label-success"> Yes </span> {% else %} <span class="label label-danger"> No </span>{% endif %}</td>
+            <td><a href="{% url "wod-update-view" entry.pk %}" class="btn btn-primary">Update</a></td>
+            <td><a href="{% url "wod-delete-view" entry.pk %}" class="btn btn-danger">Delete</a></td>
           </tr>
         {% endfor %}
       </table>

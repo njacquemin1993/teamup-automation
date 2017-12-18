@@ -25,7 +25,7 @@ SECRET_KEY = 'wdg9k0)z-d=u2)dl&ti5c@ysl8f!joredq485(7qr^2zj&vx)4'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["192.168.1.104"]
 
 LOGIN_URL = "/login/"
 
@@ -123,5 +123,5 @@ STATIC_URL = '/static/'
 STATIC_ROOT = '/tmp/static/'
 
 STATICFILES_DIRS = [
-    '/home/nicolas/Documents/teamup-automation/teamup_booking/static'
+    '/home/pi/teamup-automation/teamup_booking/static'
 ]

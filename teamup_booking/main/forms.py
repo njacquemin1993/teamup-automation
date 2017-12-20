@@ -12,6 +12,8 @@ from django.conf import settings
 
 from main.models import Wod
 
+from datetime import datetime
+
 class WodUpdateForm(forms.ModelForm):
     launch_time = forms.DateTimeField(required=False, input_formats=["%d-%m-%Y %H:%M"])
 
@@ -21,11 +23,10 @@ class WodUpdateForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
-        try:
-            self.fields["launch_time"].initial = self.instance.launch_time.strftime("%d-%m-%Y %H:%M")
-        except:
-            pass
         super(WodUpdateForm, self).__init__(*args, **kwargs)
+        instance = kwargs.get("instance", None)
+        if instance:
+            self.initial["launch_time"] = instance.launch_time.strftime("%d-%m-%Y %H:%M")
 
     def save(self):
 	self.instance.user = self.user

@@ -21,6 +21,10 @@ class WodUpdateForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
+        try:
+            self.fields["launch_time"].initial = self.instance.launch_time.strftime("%d-%m-%Y %H:%M")
+        except:
+            pass
         super(WodUpdateForm, self).__init__(*args, **kwargs)
 
     def save(self):

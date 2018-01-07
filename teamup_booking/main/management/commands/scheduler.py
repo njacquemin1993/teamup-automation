@@ -11,7 +11,11 @@ def check_wod():
     print("Checking...")
     now = timezone.now()
     for wod in Wod.objects.filter(launch_time__lte=now, launched=False):
-        register_for_wod(wod.uuid)
+        print(wod)
+        try:
+            register_for_wod(wod.uuid)
+        except:
+            pass
 
 class Command(BaseCommand):
     def handle(self, *args, **options):

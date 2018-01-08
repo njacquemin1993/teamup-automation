@@ -9,9 +9,16 @@ from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.utils.translation import ugettext as _
+from django.utils import timezone
 
 from main.models import Wod
 from main.forms import WodUpdateForm
+from main.tasks import LOGIN_URL
+
+import mechanize
+import re
+import json
+from datetime import datetime, timedelta
 
 @method_decorator(login_required, name='dispatch')
 class WodListView(ListView):
@@ -60,3 +67,28 @@ class WodDeleteView(DeleteView):
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, _("Successfully deleted."))
         return super(WodDeleteView, self).delete(request, *args, **kwargs)
+
+def register_view(request):
+    user = request.user
+    b = mechanize.Browser()
+    b.open(LOGIN_URL)
+    b.select_form(nr=0)
+    b.form["email"] = request.user.email
+    b.form["password"] = request.user.first_name
+    b.submit()
+    r = b.open("https://goteamup.com/p/787790-crossfit-vetroz/")
+    text = r.read()
+    m = re.search(r'var calendar_feed_js = (.*)', text)
+    data = json.loads(m.group(1))
+    results = []
+    now = timezone.localtime().replace(tzinfo=None)
+    for e in data["events"]:
+        if e["description"] == "WOD":
+            start = datetime.strptime(e["start"], "%Y-%m-%dT%H:%M:%SZ")
+            end = datetime.strptime(e["end"], "%Y-%m-%dT%H:%M:%SZ")
+            launch = start - timedelta(days=7) + timedelta(minutes=1)
+            url = "https://goteamup.com" + e["url"]
+            planned = Wod.objects.filter(wod_url=url, user=user).count() > 0
+            if start - timedelta(hours=2, minutes=10) > now:
+                results.append([url, start, end, launch, e["registration_details"]["attending"] or planned])
+    return render(request, 'event_list.html', {'events':results})

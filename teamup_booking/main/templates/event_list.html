@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load tz %}
+
+{% block scripts %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="panel panel-primary">
+  <div class="panel-heading">Wod list</div>
+
+  <div class="panel-body">
+      <table class="table">
+        <thead>
+          <th>Wod URL</th>
+          <th>Date</th>
+          <th>Start time</th>
+          <th>End time</th>
+          <th></th>
+        </thead>
+        {% for entry in events %}
+          <tr>
+            <td> <a href="{{entry.0}}">{{ entry.0 }}</a></td>
+            <td>{{ entry.1|date:"d.m.y"}}</td>
+            <td>{{ entry.1|date:"H:i" }}</td>
+            <td>{{ entry.2|date:"H:i" }}</td>
+            <td>{% if entry.4 %} <span class="label label-success"> Registered </span> {% else %}
+              <form name="register" method="post" action="{% url 'wod-create-view' %}">
+                {% csrf_token %}
+                <input type="hidden" name="wod_url" value="{{entry.0}}"/>
+                <input type="hidden" name="launch_time" value="{{entry.3|date:"d-m-Y H:i"}}"/>
+                <input type="submit" value="Register" />
+              </form>
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </div>
+
+  </div>
+
+</div>
+
+{% endblock %}

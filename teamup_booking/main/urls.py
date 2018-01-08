@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^create/$', main.views.WodCreateView.as_view(), name='wod-create-view'),
     url(r'^update/(?P<pk>\d+)/$', main.views.WodUpdateView.as_view(), name='wod-update-view'),
     url(r'^delete/(?P<pk>\d+)/$', main.views.WodDeleteView.as_view(), name='wod-delete-view'),
+    url(r'^register/$', main.views.register_view, name='register-view'),
 ]
